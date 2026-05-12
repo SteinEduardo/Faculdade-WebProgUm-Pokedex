@@ -1,0 +1,76 @@
+:root{
+    --bgEsquerdo: #fc7168; 
+    --bgDireito: #e0e0e0;  
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.containerPrincipal {
+    display: flex;
+    height: 100vh; 
+}
+
+.ladoEsquerdo {
+    width: 60%;
+    background-color: var(--bgEsquerdo);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.mainHeader h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.containerPesquisa {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.containerPesquisa input {
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.filtroBtn {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.pokedexGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.ladoDireito {
+    width: 40%;
+    background-color: var(--bgDireito);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.infoDetalhada {
+    background-color: white;
+    width: 100%;
+    height: 80%;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/*----------------------------------------*/
+
+

@@ -1,0 +1,31 @@
+Tipo de pokemon 151
+Normal, Fogo, Água, Planta, Elétrico, Gelo, Lutador, Venenoso, Terra, Voador, Psíquico, Inseto, Pedra, Fantasma e Dragão
+
+Documentação
+https://pokeapi.co/docs/v2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,7 +12,7 @@ async function carregarPokemons() {
         const pokemon = await respostaDetalhe.json();
 
         const cardHtmlPokemons = `
-            <div class="pokemonCard">
+            <div class="pokemonCard" onclick="gerarDetalhes('${pokemon.name}')">
                 <span class="pokedexId">#${pokemon.id}</span>
                 <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}">
                 <h3>${pokemon.name}</h3>
@@ -31,11 +31,11 @@ carregarPokemons();
 //-----------------DETALHES----------------------------
 const gridDetalhes = document.querySelector('.infoDetalhada');
 
-async function gerarDetalhes() {
-    const respostaDetalhe = await fetch('https://pokeapi.co/api/v2/pokemon/haunter');
+async function gerarDetalhes(nome) {
+    const respostaDetalhe = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`);
     const pokemonInfo = await respostaDetalhe.json();
 
-    console.log("Detalhes de Haunter");
+    console.log(`Carregando detalhes de: ${pokemonInfo.name}`);
 
     const cardHtmlDetalhes = `
         <div class="pokemonDetalhe">

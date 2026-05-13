@@ -73,6 +73,7 @@
     text-align: center;
     background-color: var(--bgDireito);
     border-radius:  15px;
+    cursor: pointer;
 }
 
 .pokemonCard:hover{

@@ -8,7 +8,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+ 
 .containerPrincipal {
     display: flex;
     height: 100vh; 

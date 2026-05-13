@@ -4,10 +4,11 @@ Normal, Fogo, Água, Planta, Elétrico, Gelo, Lutador, Venenoso, Terra, Voador, 
 Documentação
 https://pokeapi.co/docs/v2
 
-
-
-
-
+info do lado esquerdo
+    id
+    sprit
+    nome
+    Tipo
 
 
 

@@ -10,7 +10,7 @@ async function carregarPokemons() {
 
     for(let item of dadosLista.results){
         const respostaDetalhe = await fetch(item.url);
-        const pokemon = await respostaDetalhe.json();
+        const pokemon = await respostaDetalhe.json(); 
 
         const cardHtmlPokemons = `
             <div class="pokemonCard" onclick="gerarDetalhes('${pokemon.name}')">
@@ -65,4 +65,50 @@ async function gerarDetalhes(nome) {
 }
 
 gerarDetalhes();
+
+//-----------------PESQUISA---------------------------
+const inptPesquisa =  document.querySelector('#pesquisaPokemon');
+
+async function buscaPokemon(nome) {
+    try{
+        const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`);
+
+        if(!resposta.ok) throw new Error();
+
+        const pokemon = await resposta.json();
+
+        gridPokemons.innerHTML = ""
+
+        const cardHtmlPokemons = `
+            <div class="pokemonCard" onclick="gerarDetalhes('${pokemon.name}')">
+                <span class="pokedexId">#${pokemon.id}</span>
+                <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}">
+                <h3>${pokemon.name}</h3>
+                <div class="tiposContainer">
+                    <span class="typeTag">${pokemon.types[0].type.name}</span>
+                </div>
+            </div>
+        `;
+
+        gridPokemons.innerHTML += cardHtmlPokemons;
+
+    }catch (erro){
+        gridPokemons.innerHTML = "<p style='color: white;'>Pokémon não encontrado...</p>";
+    }
+}
+
+inptPesquisa.addEventListener('input', (evento) => {
+    const buscaNome = evento.target.value.toLowerCase().trim();
+
+    if (buscaNome === ""){
+        offset = 0;
+        gridPokemons.innerHTML = ""
+        carregarPokemons();
+        return;
+    }
+
+    buscaPokemon(buscaNome);
+})
+
+
 

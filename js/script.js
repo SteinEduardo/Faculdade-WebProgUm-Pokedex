@@ -1,11 +1,12 @@
+let offset = 0;
+const limit = 18;
+
 //-----------------POKEMONS----------------------------
 const gridPokemons = document.querySelector('.pokedexGrid');
 
 async function carregarPokemons() {
-    const resposta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=18');
+    const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
     const dadosLista = await resposta.json();
-
-    gridPokemons.innerHTML = "";
 
     for(let item of dadosLista.results){
         const respostaDetalhe = await fetch(item.url);
@@ -24,6 +25,8 @@ async function carregarPokemons() {
 
         gridPokemons.innerHTML += cardHtmlPokemons;
     }
+
+    offset += limit;
 }
 
 carregarPokemons();

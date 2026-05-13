@@ -8,17 +8,26 @@
     padding: 0;
     box-sizing: border-box;
 }
- 
+
+/*-------------LADO ESQUERDO------------------*/
 .containerPrincipal {
     display: flex;
     height: 100vh; 
 }
 
-/*-------------LADO ESQUERDO------------------*/
+.mainHeader{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--bgEsquerdo);
+    padding-bottom: 20px;
+    width: 100%;
+}
+
 .ladoEsquerdo {
     width: 60%;
     background-color: var(--bgEsquerdo);
-    padding: 10px;
+    padding: 0 10px 10px 10px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;

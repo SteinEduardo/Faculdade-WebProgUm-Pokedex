@@ -14,11 +14,15 @@
     height: 100vh; 
 }
 
+/*-------------LADO ESQUERDO------------------*/
 .ladoEsquerdo {
     width: 60%;
     background-color: var(--bgEsquerdo);
-    padding: 20px;
+    padding: 10px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .mainHeader h1 {
@@ -48,12 +52,34 @@
     cursor: pointer;
 }
 
+.btnCarregarMais{
+    
+}
+
+/*-------------GRID POKEMONS------------------*/
 .pokedexGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
+    padding: 15px;
 }
 
+/*-------------GRID JS------------------*/
+.pokemonCard{
+    max-width: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: var(--bgDireito);
+    border-radius:  15px;
+}
+
+.pokemonCard:hover{
+    transform: scale(1.10);
+}
+
+/*-------------LADO DIREITO------------------*/
 .ladoDireito {
     width: 40%;
     background-color: var(--bgDireito);
@@ -69,8 +95,18 @@
     height: 80%;
     border-radius: 10px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto
 }
 
-/*----------------------------------------*/
+.infoDetalhada img{
+    max-width: 250px;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+
 
 

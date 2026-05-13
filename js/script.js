@@ -1,27 +1,32 @@
 //-----------------POKEMONS----------------------------
 const gridPokemons = document.querySelector('.pokedexGrid');
 
-async function gerarCard() {
-    const resposta = await fetch('https://pokeapi.co/api/v2/pokemon/haunter');
-    const pokemon = await resposta.json();
+async function carregarPokemons() {
+    const resposta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=18');
+    const dadosLista = await resposta.json();
 
-    console.log("Dados do Haunter:", pokemon);
+    gridPokemons.innerHTML = "";
 
-    const cardHtmlPokemons = `
-        <div class="pokemonCard">
-            <span class="pokedexId">#${pokemon.id}</span>
-            <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}">
-            <h3>${pokemon.name}</h3>
-            <div class="tiposContainer">
-                <span class="typeTag">${pokemon.types[0].type.name}</span>
+    for(let item of dadosLista.results){
+        const respostaDetalhe = await fetch(item.url);
+        const pokemon = await respostaDetalhe.json();
+
+        const cardHtmlPokemons = `
+            <div class="pokemonCard">
+                <span class="pokedexId">#${pokemon.id}</span>
+                <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}">
+                <h3>${pokemon.name}</h3>
+                <div class="tiposContainer">
+                    <span class="typeTag">${pokemon.types[0].type.name}</span>
+                </div>
             </div>
-        </div>
-    `;
+        `;
 
-    gridPokemons.innerHTML = cardHtmlPokemons;
+        gridPokemons.innerHTML += cardHtmlPokemons;
+    }
 }
 
-gerarCard();
+carregarPokemons();
 
 //-----------------DETALHES----------------------------
 const gridDetalhes = document.querySelector('.infoDetalhada');
@@ -37,8 +42,8 @@ async function gerarDetalhes() {
             <span class="pokedex-id">#${pokemonInfo.id}</span>
             <img src="${pokemonInfo.sprites.other['official-artwork'].front_default}" alt="${pokemonInfo.name}">
             <h3>${pokemonInfo.name}</h3>
-            <div class="tipos-container">
-                <span class="typeTag">Tipo: ${pokemonInfo.types[0].type.name}</span>
+            <div class="tiposContainer">
+                <p class="typeTag">Tipo: ${pokemonInfo.types[0].type.name}</p>
                 <span class="typeTag">Altura: ${pokemonInfo.height / 10}m</span>
                 <span class="typeTag">Peso: ${pokemonInfo.weight / 10}kg</span>
 
@@ -50,7 +55,6 @@ async function gerarDetalhes() {
                     <p>Defesa Especial: ${pokemonInfo.stats[4].base_stat}</p>
                     <p>Velocidade: ${pokemonInfo.stats[5].base_stat}</p>
                 </div>
-                
             </div>
         </div>
     `

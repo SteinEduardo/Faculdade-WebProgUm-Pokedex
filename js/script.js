@@ -10,7 +10,10 @@ async function carregarPokemons() {
 
     for(let item of dadosLista.results){
         const respostaDetalhe = await fetch(item.url);
-        const pokemon = await respostaDetalhe.json(); 
+        const pokemon = await respostaDetalhe.json();
+        const tiposHtml = pokemon.types.map(t => `
+                <span class="typeTag">${t.type.name}</span>
+            `).join('');
 
         const cardHtmlPokemons = `
             <div class="pokemonCard" onclick="gerarDetalhes('${pokemon.name}')">
@@ -18,7 +21,7 @@ async function carregarPokemons() {
                 <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}">
                 <h3>${pokemon.name}</h3>
                 <div class="tiposContainer">
-                    <span class="typeTag">${pokemon.types[0].type.name}</span>
+                    ${tiposHtml}
                 </div>
             </div>
         `;
@@ -37,6 +40,9 @@ const gridDetalhes = document.querySelector('.infoDetalhada');
 async function gerarDetalhes(nome) {
     const respostaDetalhe = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`);
     const pokemonInfo = await respostaDetalhe.json();
+    const tiposHtml = pokemonInfo.types.map(t => `
+        <span class="typeTag">${t.type.name}</span>
+    `).join('');
 
     console.log(`Carregando detalhes de: ${pokemonInfo.name}`);
 
@@ -63,6 +69,10 @@ async function gerarDetalhes(nome) {
             <span class="pokedex-id">#${pokemonInfo.id}</span>
             <h3>${pokemonInfo.name}</h3>
             <img src="${pokemonInfo.sprites.other['official-artwork'].front_default}" alt="${pokemonInfo.name}">
+
+            <div class="tipos">
+                ${tiposHtml}
+            </div>
             
             <div class="infoCorpo">
                 <div class="corpo">

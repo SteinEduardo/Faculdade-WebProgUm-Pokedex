@@ -107,10 +107,18 @@
 }
 
 .infoDetalhada img{
-    max-width: 250px;
+    max-width: 220px;
     width: 100%;
     margin: 0 auto;
     display: block;
+}
+
+.tipos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-transform: capitalize;
+    gap: 20px;
 }
 
 .infoDetalhada h3{

@@ -79,6 +79,7 @@
     background-color: var(--bgDireito);
     border-radius:  15px;
     cursor: pointer;
+    text-transform: capitalize;
 }
 
 .pokemonCard:hover{

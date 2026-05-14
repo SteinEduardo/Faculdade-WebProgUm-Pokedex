@@ -97,8 +97,11 @@ gerarDetalhes();
 
 //-----------------PESQUISA---------------------------
 const inptPesquisa =  document.querySelector('#pesquisaPokemon');
+let tempoMensagem;
 
 async function buscaPokemon(nome) {
+    clearTimeout(tempoMensagem);
+
     try{
         const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`);
 
@@ -122,22 +125,28 @@ async function buscaPokemon(nome) {
         gridPokemons.innerHTML += cardHtmlPokemons;
 
     }catch (erro){
-        gridPokemons.innerHTML = "<p style='color: white;'>Pokémon não encontrado...</p>";
-    }
-}
+        gridPokemons.innerHTML = "<p style='color: white;'>Buscando Pokemon...</p>";
+
+        tempoMensagem = setTimeout(() => {
+            gridPokemons.innerHTML = "<p style='color: white;'>Pokemon não encontrado...</p>";
+        }, 1500);
+    };
+};
 
 inptPesquisa.addEventListener('input', (evento) => {
     const buscaNome = evento.target.value.toLowerCase().trim();
+
+    clearTimeout(tempoMensagem);
 
     if (buscaNome === ""){
         offset = 0;
         gridPokemons.innerHTML = ""
         carregarPokemons();
         return;
-    }
+    };
 
     buscaPokemon(buscaNome);
-})
+});
 
 
 

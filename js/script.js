@@ -40,27 +40,46 @@ async function gerarDetalhes(nome) {
 
     console.log(`Carregando detalhes de: ${pokemonInfo.name}`);
 
+    //Barra de Status
+    const statsBar = pokemonInfo.stats.map(status => {
+        const porcentagem = (status.base_stat / 255) * 100;
+
+        return `
+            <div class="statBarraContainer">
+                <div class="statDesc">
+                    <span class="statNome">${status.stat.name}</span>
+                    <span class="statValor">${status.base_stat}</span>
+                </div>
+                <div class="statBarBg">
+                    <div class="statBarraPreenchimento" style="width: ${porcentagem}%"></div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    //Card de detalhes
     const cardHtmlDetalhes = `
         <div class="pokemonDetalhe">
             <span class="pokedex-id">#${pokemonInfo.id}</span>
-            <img src="${pokemonInfo.sprites.other['official-artwork'].front_default}" alt="${pokemonInfo.name}">
             <h3>${pokemonInfo.name}</h3>
-            <div class="tiposContainer">
-                <p class="typeTag">Tipo: ${pokemonInfo.types[0].type.name}</p>
-                <span class="typeTag">Altura: ${pokemonInfo.height / 10}m</span>
-                <span class="typeTag">Peso: ${pokemonInfo.weight / 10}kg</span>
-
-                <div class="status">
-                    <p>HP: ${pokemonInfo.stats[0].base_stat}</p>
-                    <p>Ataque: ${pokemonInfo.stats[1].base_stat}</p>
-                    <p>Defesa: ${pokemonInfo.stats[2].base_stat}</p>
-                    <p>Ataque Especial: ${pokemonInfo.stats[3].base_stat}</p>
-                    <p>Defesa Especial: ${pokemonInfo.stats[4].base_stat}</p>
-                    <p>Velocidade: ${pokemonInfo.stats[5].base_stat}</p>
+            <img src="${pokemonInfo.sprites.other['official-artwork'].front_default}" alt="${pokemonInfo.name}">
+            
+            <div class="infoCorpo">
+                <div class="corpo">
+                    <span>${pokemonInfo.weight / 10}kg</span>
+                    <label>Peso</label>
+                </div>
+                <div class="corpo">
+                    <span>${pokemonInfo.height / 10}m</span>
+                    <label>Altura</label>
                 </div>
             </div>
+
+            <div class="status">
+                ${statsBar}
+            </div>
         </div>
-    `
+    `;
     gridDetalhes.innerHTML = cardHtmlDetalhes;
 }
 
@@ -109,6 +128,12 @@ inptPesquisa.addEventListener('input', (evento) => {
 
     buscaPokemon(buscaNome);
 })
+
+
+
+
+
+
 
 
 

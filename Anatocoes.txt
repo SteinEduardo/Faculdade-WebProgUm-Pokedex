@@ -10,6 +10,11 @@ info do lado esquerdo
     nome
     Tipo
 
+Status maxino é de 255
+
+Ver porque tipagens duplas não aparecem
+Adicionar tipagem de poekon no detalhe
+
 
 
 

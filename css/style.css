@@ -61,10 +61,6 @@
     cursor: pointer;
 }
 
-.btnCarregarMais{
-    
-}
-
 /*-------------GRID POKEMONS------------------*/
 .pokedexGrid {
     display: grid;
@@ -117,6 +113,44 @@
     display: block;
 }
 
+.infoDetalhada h3{
+    text-transform: capitalize;
+    text-align: center;
+}
 
+.infoCorpo{
+    display: flex;
+    justify-content: space-around;
+}
 
+.corpo{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
 
+/*-------------BARRA DE STATUS------------------*/
+.status{
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.statNome{
+    text-transform: capitalize;
+}
+
+.statBarBg {
+    background-color: #f2f2f2;
+    height: 8px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden; 
+}
+
+.statBarraPreenchimento {
+    background-color: #4CAF50;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.4s ease-out;
+}
